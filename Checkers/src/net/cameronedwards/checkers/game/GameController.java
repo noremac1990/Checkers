@@ -19,7 +19,7 @@ public class GameController {
 	private Board board = new Board();
 	
 	public GameController() {
-
+		
 	}
 	
 	public void newGame() {
@@ -28,8 +28,27 @@ public class GameController {
 		selectedSquares.clear();
 		board = new Board();
 		
+		setupCheckers();
+		
 	}
 	
+	private void setupCheckers() {
+		for(int y = 0; y < 3; y++) {
+			for(int x = 0; x < board.getWidth(); x++) {
+				if(((x + y) & 1) == 1)
+					board.addChecker(new RedChecker(), new Location(x, y));
+			}
+		}
+		
+		for(int y = board.getHeight() - 1; y > 4; y--) {
+			for(int x = 0; x < board.getWidth(); x++) {
+				if(((x + y) & 1) == 1)
+					board.addChecker(new BlackChecker(), new Location(x, y));
+			}
+		}
+		
+	}
+
 	public void go(Location location) {
 
 		if (selectedSquares.size() == 0) {

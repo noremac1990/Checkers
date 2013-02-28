@@ -22,9 +22,9 @@ public class Move {
 		this.jumpedLocation = jumpedLocation;
 	}
 
-	public static List<Move> calculateMoves(Board board, Square square, Checker checker) {
-		return calculateMoves(board, checker, false,
-				square.getLocation(), new HashSet<Location>());
+	public static List<Move> calculateMoves(Board board, Square sq, Checker ch) {
+		return calculateMoves(board, ch, false,
+				sq.getLocation(), new HashSet<Location>());
 	}
 
 	private static List<Move> calculatMovesDirection(Board board,

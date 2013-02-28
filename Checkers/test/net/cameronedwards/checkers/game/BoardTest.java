@@ -11,11 +11,13 @@ public class BoardTest {
 	public void testReset() {
 		Board board = new Board();
 
-		board.moveChecker(new Location(1, 2), new Location(2, 1));
+		board.addChecker(new BlackChecker(), new Location(1, 1));
 
+		assertTrue(board.getSquare(new Location(1, 1)).isOccupied());
+		
 		board.reset();
 
-		assertTrue(board.getSquare(new Location(1, 2)).isOccupied());
+		assertFalse(board.getSquare(new Location(1, 1)).isOccupied());
 
 	}
 
