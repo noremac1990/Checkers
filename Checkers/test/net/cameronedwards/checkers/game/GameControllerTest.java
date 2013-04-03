@@ -15,7 +15,7 @@ public class GameControllerTest {
 	public void testNewGame() {
 		GameController gc = new GameController();
 		
-		gc.newGame();
+		gc.newGame(false);
 
 		assertTrue("Pieces should be in starting position", gc.getBoard().getSquare(new Location(0, 5)).isOccupied());
 		
@@ -26,7 +26,7 @@ public class GameControllerTest {
 		
 		GameController gc = new GameController();
 		
-		gc.newGame();
+		gc.newGame(false);
 		
 		gc.go(new Location(0, 5));
 		gc.go(new Location(1, 4));
@@ -38,7 +38,7 @@ public class GameControllerTest {
 	public void testGetTurn() {
 		GameController gc = new GameController();
 		
-		gc.newGame();
+		gc.newGame(false);
 		
 		assertEquals("Black moves first", GameController.Turn.BLACK, gc.getTurn());
 		
@@ -53,7 +53,7 @@ public class GameControllerTest {
 	public void testGetSelectedSquares() {
 		GameController gc = new GameController();
 		
-		gc.newGame();
+		gc.newGame(false);
 		
 		gc.go(new Location(0, 5));
 		

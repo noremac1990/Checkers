@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import net.cameronedwards.checkers.ai.CheckersAI;
+
 public class GameController {
 	public enum Turn {
 		BLACK,
@@ -18,15 +20,18 @@ public class GameController {
 	
 	private Board board = new Board();
 	
+	private boolean vsAI = false;
+	
 	public GameController() {
 		
 	}
 	
-	public void newGame() {
+	public void newGame(boolean ai) {
 		turn = Turn.BLACK;
 		moveQueue.clear();
 		selectedSquares.clear();
 		board = new Board();
+		vsAI = ai;
 		
 		setupCheckers();
 		
@@ -120,10 +125,18 @@ public class GameController {
 			board.executeMove(moveQueue.pop());
 		}
 		
-		if(turn == Turn.BLACK)
-			turn = Turn.RED;
-		else
-			turn = Turn.BLACK;
+		if (!vsAI) {
+
+			if (turn == Turn.BLACK)
+				turn = Turn.RED;
+			else
+				turn = Turn.BLACK;
+		} else {
+
+			CheckersAI ai = new CheckersAI();
+
+			board.executeMove(ai.CalculateMove(board));
+		}
 		
 		selectedSquares.clear();
 	}

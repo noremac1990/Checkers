@@ -50,6 +50,8 @@ public class CheckersPanel extends JPanel {
 		init();
 		
 		repaint();
+		
+		newGameDialog();
 	}
 	
 	private void init() {
@@ -65,7 +67,7 @@ public class CheckersPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				gc.newGame();
+				newGameDialog();
 				repaint();
 
 			}
@@ -93,12 +95,12 @@ public class CheckersPanel extends JPanel {
 				
 				if(!gc.hasMoves(Checker.Color.RED)) {
 					JOptionPane.showMessageDialog(CheckersPanel.this, "Black Wins!");
-					gc.newGame();
+					newGameDialog();
 				}
 				
 				if(!gc.hasMoves(Checker.Color.BLACK)) {
 					JOptionPane.showMessageDialog(CheckersPanel.this, "Red Wins!");
-					gc.newGame();
+					newGameDialog();
 				}
 				
 				
@@ -108,6 +110,20 @@ public class CheckersPanel extends JPanel {
 		
 		
 		
+	}
+	
+	private void newGameDialog() {
+		String[] options = { "vs AI",
+				"vs Human"
+		};
+		int n = JOptionPane.showOptionDialog(this, "Would you like to play vs?", "New Game", 
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
+				null, options, options[0]);
+		
+		if(n == 0)
+			gc.newGame(true);
+		else
+			gc.newGame(false);
 	}
 
 	private void loadImages() {

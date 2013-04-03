@@ -137,6 +137,10 @@ public class Move {
 	public boolean isJump() {
 		return jumpedLocation != null;
 	}
+	
+	public int value() {
+		return jumpedLocation == null ? 1 : 3;
+	}
 
 	public Location getJumpedLocation() {
 		return jumpedLocation;
